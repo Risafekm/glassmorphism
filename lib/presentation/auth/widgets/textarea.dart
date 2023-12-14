@@ -26,7 +26,7 @@ class TextArea extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(right: 8.0, left: 8.0),
+      padding: const EdgeInsets.only(right: 10.0, left: 10.0),
       child: TextFormField(
         controller: controller,
         validator: validator,
@@ -43,8 +43,8 @@ class TextArea extends StatelessWidget {
           ),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
-            borderSide: const BorderSide(
-              color: Colors.white,
+            borderSide: BorderSide(
+              color: Colors.white.withOpacity(.5),
               width: 2,
             ),
           ),
@@ -55,15 +55,15 @@ class TextArea extends StatelessWidget {
           suffixIconColor: const Color.fromARGB(255, 69, 68, 68),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
-            borderSide: const BorderSide(
-              color: Colors.white,
+            borderSide: BorderSide(
+              color: Colors.white.withOpacity(.5),
               width: 2,
             ),
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
-            borderSide: const BorderSide(
-              color: Colors.white,
+            borderSide: BorderSide(
+              color: Colors.white.withOpacity(.5),
               width: 2,
             ),
           ),

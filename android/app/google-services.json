@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1085040461077",
+    "project_id": "glassmorphism-app-6554e",
+    "storage_bucket": "glassmorphism-app-6554e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1085040461077:android:3ad2ab946764ffd82f151c",
+        "android_client_info": {
+          "package_name": "com.example.glassmorphism"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAoI9aMU552y0zrRsc5DXZXF7sbllzZId0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

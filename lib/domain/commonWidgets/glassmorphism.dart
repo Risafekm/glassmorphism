@@ -15,9 +15,9 @@ class GlassMorphism extends StatelessWidget {
     required this.blur,
     required this.opacity,
     required this.radius,
-    required this.child,
     required this.height,
     required this.width,
+    required this.child,
   });
 
   @override

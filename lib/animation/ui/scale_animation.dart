@@ -33,9 +33,9 @@ class _ScaleAnimationState extends State<ScaleAnimation>
       duration: const Duration(milliseconds: 1000),
     );
 
-    final _curve = CurvedAnimation(parent: _controller, curve: Curves.bounceIn);
+    final curve = CurvedAnimation(parent: _controller, curve: Curves.bounceIn);
 
-    _scaleAnimation = Tween<double>(begin: 0.60, end: 1.1).animate(_curve);
+    _scaleAnimation = Tween<double>(begin: 0.60, end: 1.1).animate(curve);
 
     if (widget.delayTime == null) {
       _controller.forward();

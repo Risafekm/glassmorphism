@@ -1,10 +1,13 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:glassmorphism/application/provider/provider_bottom.dart';
 import 'package:glassmorphism/firebase_options.dart';
 import 'package:glassmorphism/presentation/auth/signin.dart';
 import 'package:glassmorphism/presentation/auth/signup.dart';
-import 'package:glassmorphism/presentation/home_screen.dart';
+import 'package:glassmorphism/presentation/bottomnavigation/main_home.dart';
+import 'package:glassmorphism/presentation/splash_screen/splash_screen.dart';
+import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,15 +22,22 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+    return ChangeNotifierProvider(
+      create: (_) => ProviderBottomNavigation(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          tabBarTheme: TabBarTheme(
+            labelColor: Colors.pink[800],
+            labelStyle: TextStyle(color: Colors.pink[800]), // color for text
+          ),
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          useMaterial3: true,
+        ),
+        // home: SignIn(),
+        home: const SplashScreen(),
       ),
-      // home: SignIn(),
-      home: const MainScreen(),
     );
   }
 }
@@ -48,9 +58,9 @@ class MainScreen extends StatelessWidget {
             } else if (snapshot.hasError) {
               return const Center(child: Text('Error detected'));
             } else if (snapshot.hasData) {
-              return const HomeScreen();
+              return MainHome();
             } else {
-              return AuthPage();
+              return const AuthPage();
             }
           }),
     );
@@ -58,7 +68,7 @@ class MainScreen extends StatelessWidget {
 }
 
 class AuthPage extends StatefulWidget {
-  AuthPage({super.key});
+  const AuthPage({super.key});
 
   @override
   State<AuthPage> createState() => _AuthPageState();

@@ -7,7 +7,7 @@ class MensTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
+    return const SingleChildScrollView(
       child: SizedBox(
         child: Column(
           children: [Center(child: Text('Mens Tab'))],

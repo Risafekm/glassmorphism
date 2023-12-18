@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 /// TabBar Decoration
 
 BoxDecoration tabDecoration = BoxDecoration(
-    color: const Color.fromARGB(255, 10, 71, 121).withOpacity(1),
+    color: const Color.fromARGB(255, 19, 95, 22),
     border: Border.all(color: Colors.blue.shade100),
     borderRadius: BorderRadius.circular(30));
 

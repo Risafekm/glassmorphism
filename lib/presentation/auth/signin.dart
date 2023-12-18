@@ -66,7 +66,7 @@ class SignIn extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(
-                    height: 230,
+                    height: 220,
                     width: 300,
                   ),
                   DelayedAnimation(

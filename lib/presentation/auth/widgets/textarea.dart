@@ -35,7 +35,7 @@ class TextArea extends StatelessWidget {
         keyboardType: keyboardType,
         obscureText: obscureText,
         decoration: InputDecoration(
-          fillColor: Colors.white.withOpacity(.8),
+          fillColor: Colors.white.withOpacity(.2),
           filled: true,
           label: Text(
             name.toString(),

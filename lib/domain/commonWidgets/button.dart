@@ -1,7 +1,7 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
-import 'package:glassmorphism/domain/commonWidgets/glassmorphism.dart';
+import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CustomButton extends StatelessWidget {
@@ -15,28 +15,23 @@ class CustomButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GlassMorphism(
-      blur: 0.2,
-      opacity: .3,
-      radius: 10,
-      height: 50,
-      width: 250,
-      child: ElevatedButton(
-        onPressed: ontap,
-        style: ElevatedButton.styleFrom(
-          elevation: 10,
-          side: const BorderSide(
-            width: 2,
-            color: Color.fromARGB(31, 80, 64, 198),
+    return GestureDetector(
+      onTap: ontap,
+      child: GlassContainer.clearGlass(
+        blur: 10,
+        height: 50,
+        width: 250,
+        gradient: LinearGradient(colors: [
+          Colors.white.withOpacity(0.1),
+          Colors.white.withOpacity(.3),
+        ], begin: Alignment.topLeft, end: Alignment.bottomRight),
+        borderRadius: BorderRadius.circular(20),
+        child: Center(
+          child: Text(
+            text,
+            style: GoogleFonts.crimsonText(
+                fontSize: 22, fontWeight: FontWeight.bold, color: Colors.white),
           ),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
-          ),
-        ),
-        child: Text(
-          text,
-          style: GoogleFonts.crimsonText(
-              fontSize: 22, fontWeight: FontWeight.bold, color: Colors.black),
         ),
       ),
     );

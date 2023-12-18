@@ -26,8 +26,7 @@ class MainHome extends StatelessWidget {
     return Consumer<ProviderBottomNavigation>(
       builder: (context, pages, child) {
         return Scaffold(
-          backgroundColor:
-              const Color.fromARGB(255, 124, 181, 228).withOpacity(1),
+          // backgroundColor: Colors.white,
           bottomNavigationBar: const BottomNavigationBAR(),
           body: pageList[pageValue.pageIndex],
         );

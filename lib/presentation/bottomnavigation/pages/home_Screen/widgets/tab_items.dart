@@ -14,9 +14,11 @@ class TabItems extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return GlassContainer(
       height: 35,
-      gradient: LinearGradient(
-          colors: [Colors.white.withOpacity(.2), Colors.white.withOpacity(.2)]),
-      margin: const EdgeInsets.only(left: 10),
+      elevation: 0,
+      blur: 0,
+      // gradient: LinearGradient(
+      //     colors: [Colors.white.withOpacity(.9), Colors.white.withOpacity(.9)]),
+      margin: const EdgeInsets.only(left: 5),
       borderRadius: BorderRadius.circular(30),
       color: Colors.white.withOpacity(.1),
       borderColor: Colors.white,

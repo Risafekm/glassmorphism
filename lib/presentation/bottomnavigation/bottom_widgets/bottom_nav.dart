@@ -21,18 +21,15 @@ class BottomNavigationBAR extends StatelessWidget {
           child: Container(
             width: MediaQuery.of(context).size.width * 9,
             decoration: BoxDecoration(
-                gradient: LinearGradient(colors: [
-              Colors.lightGreen,
-              Colors.lightGreen.shade400,
-            ])),
+              gradient: LinearGradient(colors: [
+                Colors.lightBlue.shade400,
+                Colors.lightBlue.shade600,
+              ], begin: Alignment.centerLeft, end: Alignment.centerRight),
+            ),
             child: GlassContainer.clearGlass(
               height: 70,
               width: MediaQuery.of(context).size.width * 9,
-              gradient: LinearGradient(colors: [
-                Colors.blue.withOpacity(.1),
-                Colors.blue.withOpacity(.3)
-              ], begin: Alignment.topLeft, end: Alignment.bottomRight),
-              margin: const EdgeInsets.symmetric(horizontal: 25),
+              margin: const EdgeInsets.symmetric(horizontal: 15),
               padding: const EdgeInsets.symmetric(vertical: 10),
               borderRadius: BorderRadius.circular(20),
               child: Row(
@@ -90,10 +87,6 @@ class BottomNavigationBAR extends StatelessWidget {
     );
   }
 }
-
-
-
-
 
 // Container(
 //             height: 70,

@@ -117,10 +117,6 @@ class SignIn extends StatelessWidget {
                     delayedAnimation: 900,
                     child: HelperNavigationText(
                       "SignIn",
-                      // onTap: () {
-                      //   Navigator.of(context).push(
-                      //       MaterialPageRoute(builder: (context) => SignUp()));
-                      // },
                       onTap: onTap,
                     ),
                   ),

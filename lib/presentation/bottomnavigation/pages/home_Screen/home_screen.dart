@@ -1,11 +1,10 @@
 // ignore_for_file: unused_local_variable, file_names, non_constant_identifier_names
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
-import 'package:glassmorphism/domain/const_values.dart';
-import 'package:glassmorphism/presentation/bottomnavigation/pages/home_Screen/tab_pages/mens_tab.dart';
-import 'package:glassmorphism/presentation/bottomnavigation/pages/home_Screen/tab_pages/womens_tab.dart';
-import 'package:glassmorphism/presentation/bottomnavigation/pages/home_Screen/widgets/tab_items.dart';
+import 'package:glassmorphism/presentation/detail_grid.dart/detail_grid.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -13,125 +12,111 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final CollectionReference categories =
+        FirebaseFirestore.instance.collection('categories');
+
+    final CollectionReference profile =
+        FirebaseFirestore.instance.collection('profile');
+
+    ///TabBar adding
     return DefaultTabController(
-      ///TabBar adding
       length: 4,
       initialIndex: 0,
       child: Scaffold(
-        backgroundColor:
-            const Color.fromARGB(255, 124, 181, 228).withOpacity(1),
+        backgroundColor: const Color.fromARGB(255, 15, 104, 177),
         appBar: AppBar(
-          backgroundColor: Colors.blue.shade200,
-          toolbarHeight: 250,
-          title: Stack(
-            clipBehavior: Clip.none,
+          automaticallyImplyLeading: false,
+          backgroundColor:
+              const Color.fromARGB(255, 59, 151, 227).withOpacity(.6),
+          title: Row(
             children: [
-              Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    'Estore',
-                    style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black),
-                  ),
-                  const SizedBox(height: 10),
-                  GlassContainer.clearGlass(
-                    height: 150,
-                    blur: 2,
-                    borderWidth: 2,
-                    width: double.maxFinite,
-                    gradient: LinearGradient(colors: [
-                      Colors.white.withOpacity(0.2),
-                      Colors.white.withOpacity(0.5),
-                    ], begin: Alignment.topLeft, end: Alignment.bottomRight),
-                    // child: CarouselWidget(),
-                  ),
-                ],
+              const Icon(
+                Icons.dashboard,
+                color: Colors.white,
+                size: 26,
               ),
-              Positioned(
-                top: -10,
-                right: 50,
-                child: IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.search),
-                ),
+              const SizedBox(
+                width: 10,
               ),
-              Positioned(
-                top: -10,
-                right: 0,
-                child: IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.person),
-                ),
+              const Text(
+                'Hi',
+                style: TextStyle(
+                    fontSize: 14,
+                    color: Colors.white,
+                    fontWeight: FontWeight.w400),
               ),
+              const Spacer(),
+              StreamBuilder(
+                  stream: profile.snapshots(),
+                  builder: (context, AsyncSnapshot snapshot) {
+                    if (snapshot.hasData) {
+                      return GestureDetector(
+                        child: CircleAvatar(
+                            child: Container(
+                          decoration: BoxDecoration(
+                              image: DecorationImage(
+                                fit: BoxFit.cover,
+                                image: NetworkImage(
+                                    snapshot.data.docs[0]['image']),
+                              ),
+                              borderRadius: BorderRadius.circular(20)),
+                        )),
+                      );
+                    }
+                    return Container();
+                  }),
             ],
           ),
-          bottom: PreferredSize(
-            preferredSize: const Size.fromHeight(20),
-            child: Stack(
-              children: [
-                TabBar(
-                    overlayColor:
-                        const MaterialStatePropertyAll(Colors.transparent),
-                    dividerHeight: 0,
-                    isScrollable: true,
-                    labelColor: kselectedTabColor,
-                    unselectedLabelColor: kunselectedTabColor,
-                    indicatorSize: TabBarIndicatorSize.tab,
-                    indicatorColor: ktransperant,
-                    tabAlignment: TabAlignment.start,
-                    labelPadding: const EdgeInsets.only(left: 5),
-                    indicatorPadding:
-                        const EdgeInsets.only(left: 20, bottom: 10, top: 10),
-                    indicator: BoxDecoration(
-                        color: const Color.fromARGB(255, 19, 95, 22),
-                        // border: Border.all(color: Colors.blue.shade100),
-                        borderRadius: BorderRadius.circular(30)),
-                    tabs: [
-                      Tab(
-                        child: TabItems(
-                          name: 'Mens',
-                        ),
-                      ),
-                      Tab(
-                        child: TabItems(
-                          name: 'Womens',
-                        ),
-                      ),
-                      Tab(
-                        child: TabItems(
-                          name: 'Childrens',
-                        ),
-                      ),
-                      Tab(
-                        child: TabItems(
-                          name: 'Smart phones',
-                        ),
-                      ),
-                    ]),
-              ],
-            ),
-          ),
         ),
+        body: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 10),
+          child: StreamBuilder(
+              stream: categories.snapshots(),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  return GridView.builder(
+                    itemCount: snapshot.data?.docs.length,
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      mainAxisSpacing: 10,
+                      crossAxisSpacing: 10,
+                    ),
+                    itemBuilder: (context, index) {
+                      final data = snapshot.data!.docs[index];
 
-        /// TabBar viewing area adding
+                      return Stack(
+                        children: [
+                          GestureDetector(
+                              onTap: () {
+                                //Navigation area ,next pagilek ividennu name push aakunnatha ee codil ullathu,
 
-        body: const TabBarView(
-          children: [
-            ///Mens Items Viewing area adding
-
-            MensTab(),
-
-            ///Women items Viewing area adding
-
-            WomensTab(),
-
-            Text('3rd'),
-            Text('4th'),
-          ],
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => DetailsGrid(
+                                          name: data['name'],
+                                        )));
+                              },
+                              child: GlassContainer.clearGlass(
+                                  height: 200, width: 200)),
+                          Positioned(
+                            bottom: 10,
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 40),
+                              child: Text(data['name'],
+                                  style: GoogleFonts.notoSans(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w500,
+                                      color: Colors.white)),
+                            ),
+                          )
+                        ],
+                      );
+                    },
+                  );
+                }
+                return Container();
+              }),
         ),
       ),
     );

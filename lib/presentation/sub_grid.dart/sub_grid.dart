@@ -10,8 +10,8 @@ import 'package:glassmorphism/presentation/bottomnavigation/pages/home_Screen/ta
 import 'package:glassmorphism/presentation/bottomnavigation/pages/home_Screen/widgets/appbar.dart';
 import 'package:glassmorphism/presentation/bottomnavigation/pages/home_Screen/widgets/tab_items.dart';
 
-class DetailsGrid extends StatelessWidget {
-  DetailsGrid({super.key, required this.name});
+class SubGrid extends StatelessWidget {
+  SubGrid({super.key, required this.name});
 
   String name;
 

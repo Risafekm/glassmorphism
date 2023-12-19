@@ -29,20 +29,35 @@ class RentTab extends StatelessWidget {
                 return Stack(
                   children: [
                     InkWell(
-                        onTap: () {},
-                        child:
-                            GlassContainer.clearGlass(height: 200, width: 200)),
+                      onTap: () {},
+                      child: GlassContainer.clearGlass(height: 200, width: 200),
+                    ),
                     Positioned(
                       bottom: 10,
                       child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 40),
-                        child: Text(data['name'],
-                            style: GoogleFonts.notoSans(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.white)),
+                        padding: const EdgeInsets.symmetric(horizontal: 45),
+                        child: Text(
+                          data['name'],
+                          style: GoogleFonts.notoSans(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w500,
+                              color: Colors.white),
+                        ),
                       ),
-                    )
+                    ),
+                    Positioned(
+                      left: 10,
+                      top: 20,
+                      child: Container(
+                        height: 150,
+                        width: 150,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: NetworkImage(data['image']),
+                          ),
+                        ),
+                      ),
+                    ),
                   ],
                 );
               },

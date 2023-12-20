@@ -49,23 +49,22 @@ class BottomNavigationBAR extends StatelessWidget {
                     ontap: () {
                       pages.pageChange = 1;
                     },
-                    icon: pages.pageIndex == 1
-                        ? Icons.shopping_bag
-                        : Icons.shopping_bag_outlined,
+                    icon:
+                        pages.pageIndex == 1 ? Icons.chat : Icons.chat_outlined,
                     size: pages.pageIndex == 1 ? 26 : 22,
                     color: pages.pageIndex == 1 ? Colors.black : Colors.white,
-                    text: 'Brand',
+                    text: 'Chat',
                   ),
                   BottomNavignItems(
                     ontap: () {
                       pages.pageChange = 2;
                     },
                     icon: pages.pageIndex == 2
-                        ? Icons.shopping_cart
-                        : Icons.shopping_cart_outlined,
+                        ? Icons.ads_click
+                        : Icons.ads_click_outlined,
                     size: pages.pageIndex == 2 ? 26 : 22,
                     color: pages.pageIndex == 2 ? Colors.black : Colors.white,
-                    text: 'Cart',
+                    text: 'My Ads',
                   ),
                   BottomNavignItems(
                     ontap: () {

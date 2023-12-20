@@ -15,55 +15,63 @@ class SalesTab extends StatelessWidget {
     return StreamBuilder(
         stream: sales.snapshots(),
         builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            return GridView.builder(
-              itemCount: snapshot.data?.docs.length,
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                mainAxisSpacing: 10,
-                crossAxisSpacing: 10,
-              ),
-              itemBuilder: (context, index) {
-                final data = snapshot.data!.docs[index];
-
-                return Stack(
-                  children: [
-                    InkWell(
-                        onTap: () {},
-                        child:
-                            GlassContainer.clearGlass(height: 200, width: 200)),
-                    Positioned(
-                      bottom: 10,
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 45),
-                        child: Text(
-                          data['name'],
-                          style: GoogleFonts.notoSans(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.white),
-                        ),
-                      ),
-                    ),
-                    Positioned(
-                      left: 10,
-                      top: 20,
-                      child: Container(
-                        height: 150,
-                        width: 150,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: NetworkImage(data['image']),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                );
-              },
-            );
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(
+                child: CircularProgressIndicator(color: Colors.amber));
+          } else if (snapshot.hasError) {
+            return const Center(child: Text('Error Loaded'));
+          } else if (snapshot.hasData) {
+            return subSalesGrid(snapshot);
           }
           return Container();
         });
+  }
+
+  Widget subSalesGrid(AsyncSnapshot<QuerySnapshot<Object?>> snapshot) {
+    return GridView.builder(
+      itemCount: snapshot.data?.docs.length,
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        mainAxisSpacing: 10,
+        crossAxisSpacing: 10,
+      ),
+      itemBuilder: (context, index) {
+        final data = snapshot.data!.docs[index];
+
+        return Stack(
+          children: [
+            InkWell(
+                onTap: () {},
+                child: GlassContainer.clearGlass(height: 200, width: 200)),
+            Positioned(
+              bottom: 10,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 45),
+                child: Text(
+                  data['name'],
+                  style: GoogleFonts.notoSans(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.white),
+                ),
+              ),
+            ),
+            Positioned(
+              left: 10,
+              top: 20,
+              child: Container(
+                height: 150,
+                width: 150,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: NetworkImage(data['image']),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        );
+      },
+    );
   }
 }

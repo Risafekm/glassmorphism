@@ -55,6 +55,7 @@ class HomeScreen extends StatelessWidget {
                     if (snapshot.hasData) {
                       return GestureDetector(
                         onTap: () {
+                          //profiel area dialog box
                           showGeneralDialog(
                             context: context,
                             pageBuilder: (BuildContext context,

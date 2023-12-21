@@ -34,13 +34,13 @@ class TextArea extends StatelessWidget {
         enabled: true,
         keyboardType: keyboardType,
         obscureText: obscureText,
-        style: TextStyle(color: Colors.white, fontSize: 16),
+        style: const TextStyle(color: Colors.white, fontSize: 16),
         decoration: InputDecoration(
           fillColor: Colors.white.withOpacity(.2),
           filled: true,
           label: Text(
             name.toString(),
-            style: TextStyle(color: Colors.black),
+            style: const TextStyle(color: Colors.black),
           ),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),

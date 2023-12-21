@@ -3,6 +3,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
+import 'package:glassmorphism/application/services/api.dart';
 import 'package:glassmorphism/presentation/sub_grid.dart/sub_grid.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -56,58 +57,7 @@ class HomeScreen extends StatelessWidget {
                       return GestureDetector(
                         onTap: () {
                           //profiel area dialog box
-                          showGeneralDialog(
-                            context: context,
-                            pageBuilder: (BuildContext context,
-                                Animation animation, Animation animation1) {
-                              return Align(
-                                alignment: Alignment.topRight,
-                                child: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 15, vertical: 40),
-                                  child: GlassContainer.clearGlass(
-                                    height: 250,
-                                    width: 230,
-                                    borderRadius: BorderRadius.circular(20),
-                                    borderColor: Colors.white,
-                                    gradient: LinearGradient(
-                                      colors: [
-                                        Colors.white.withOpacity(.5),
-                                        Colors.white.withOpacity(.3),
-                                      ],
-                                    ),
-                                    child: Column(
-                                      children: [
-                                        Padding(
-                                          padding: const EdgeInsets.only(
-                                              left: 10, right: 10, top: 5),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              cancelIcon(context),
-                                              profileAvatar(snapshot, size: 18),
-                                            ],
-                                          ),
-                                        ),
-                                        iconTextSHowGeneral(
-                                            name: 'Your Profile',
-                                            icon: Icons.person),
-                                        iconTextSHowGeneral(
-                                            name: 'Change Mode',
-                                            icon: Icons.change_circle),
-                                        iconTextSHowGeneral(
-                                            name: 'Subscriptions',
-                                            icon: Icons.subscriptions),
-                                        iconTextSHowGeneral(
-                                            name: 'Logout', icon: Icons.logout),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              );
-                            },
-                          );
+                          profileDialogBox(context, snapshot);
                         },
                         child: profileAvatar(snapshot, size: 20),
                       );
@@ -139,37 +89,217 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  Widget iconTextSHowGeneral({required String name, required IconData icon}) {
+// profile Dialogbox
+
+  Future<Object?> profileDialogBox(
+      BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+    return showGeneralDialog(
+      context: context,
+      pageBuilder:
+          (BuildContext context, Animation animation, Animation animation1) {
+        return Align(
+          alignment: Alignment.topRight,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 40),
+            child: GlassContainer.clearGlass(
+              height: 260,
+              width: 250,
+              borderRadius: BorderRadius.circular(20),
+              borderColor: Colors.white,
+              gradient: LinearGradient(
+                colors: [
+                  Colors.white.withOpacity(.5),
+                  Colors.white.withOpacity(.3),
+                ],
+              ),
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10, right: 10, top: 5),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        cancelIcon(context),
+                        profileAvatar(snapshot, size: 18),
+                      ],
+                    ),
+                  ),
+                  iconTextSHowGeneral(
+                      name: 'Your Profile', icon: Icons.person, ontap: () {}),
+                  iconTextSHowGeneral(
+                      name: 'Change Mode',
+                      icon: Icons.change_circle,
+                      ontap: () {}),
+                  iconTextSHowGeneral(
+                      name: 'Subscriptions',
+                      icon: Icons.subscriptions,
+                      ontap: () {
+                        subcriptionUiGlass(context)
+                            .then((value) => Navigator.pop(context));
+                      }),
+                  iconTextSHowGeneral(
+                      name: 'Logout',
+                      icon: Icons.logout,
+                      ontap: () {
+                        Api.signOut();
+                        Navigator.pop(context);
+                      }),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  // Subcriptions ui glass
+
+  Future<Object?> subcriptionUiGlass(
+    BuildContext context,
+  ) {
+    return showGeneralDialog(
+        context: context,
+        pageBuilder: (context, animation, animation1) {
+          return GlassContainer.clearGlass(
+            height: 300,
+            width: 320,
+            borderRadius: BorderRadius.circular(40),
+            borderColor: Colors.white,
+            gradient: LinearGradient(
+              colors: [
+                Colors.white.withOpacity(.2),
+                Colors.white.withOpacity(.2),
+              ],
+            ),
+            child: Column(
+              children: [
+                const SizedBox(height: 10),
+                Padding(
+                  padding: const EdgeInsets.only(left: 20.0, right: 38),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      TextButton(
+                        onPressed: () {},
+                        child: const Text(
+                          'Subcriptions',
+                          style: TextStyle(
+                              fontSize: 18,
+                              color: Colors.white70,
+                              fontWeight: FontWeight.w500),
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () => Navigator.pop(context),
+                        child: const Icon(
+                          Icons.cancel,
+                          size: 32,
+                          color: Colors.white70,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 40),
+                SizedBox(
+                  width: 260,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    style: const ButtonStyle(
+                      backgroundColor: MaterialStatePropertyAll(
+                        Color.fromARGB(255, 11, 61, 103),
+                      ),
+                    ),
+                    child: const Text(
+                      'Remove ads for 1 month       6 QR',
+                      style: TextStyle(color: Colors.white70),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 10),
+                SizedBox(
+                  width: 260,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    style: const ButtonStyle(
+                      backgroundColor: MaterialStatePropertyAll(
+                        Color.fromARGB(255, 11, 61, 103),
+                      ),
+                    ),
+                    child: const Text(
+                      'Remove ads for 1 year       60 QR',
+                      style: TextStyle(color: Colors.white70),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 10),
+                SizedBox(
+                  width: 260,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    style: const ButtonStyle(
+                      backgroundColor: MaterialStatePropertyAll(
+                        Color.fromARGB(255, 11, 61, 103),
+                      ),
+                    ),
+                    child: const Text(
+                      'Continue with ads      0 QR',
+                      style: TextStyle(color: Colors.white70),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          );
+        });
+  }
+
+  Widget iconTextSHowGeneral(
+      {required String name,
+      required IconData icon,
+      required VoidCallback ontap}) {
     return Column(
       children: [
         Stack(
           clipBehavior: Clip.none,
           children: [
-            TextButton(
-              onPressed: () {},
-              child: Row(
-                children: [
-                  Icon(
-                    icon,
-                    color: Colors.white,
-                    size: 20,
-                  ),
-                  const SizedBox(width: 10),
-                  Text(
-                    name,
-                    style: const TextStyle(fontSize: 14, color: Colors.white70),
-                  ),
-                ],
+            Padding(
+              padding: const EdgeInsets.only(left: 5.0),
+              child: TextButton(
+                onPressed: ontap,
+                child: Row(
+                  children: [
+                    Icon(
+                      icon,
+                      color: Colors.white,
+                      size: 20,
+                    ),
+                    const SizedBox(width: 10),
+                    Text(
+                      name,
+                      style:
+                          const TextStyle(fontSize: 14, color: Colors.white70),
+                    ),
+                  ],
+                ),
               ),
             ),
             Positioned(
-                bottom: 5,
-                left: 10,
-                child: Container(
-                  width: 150,
-                  height: 2,
-                  color: Colors.white54,
-                )),
+              bottom: 5,
+              left: 15,
+              child: Container(
+                width: 150,
+                height: 2,
+                color: Colors.white54,
+              ),
+            ),
           ],
         ),
       ],

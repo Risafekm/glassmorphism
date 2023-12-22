@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
+import 'package:glassmorphism/animation/ui/delayed_animation.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ServicesTab extends StatelessWidget {
@@ -43,26 +44,38 @@ class ServicesTab extends StatelessWidget {
                 child: GlassContainer.clearGlass(height: 200, width: 200)),
             Positioned(
               bottom: 10,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 45),
-                child: Text(
-                  data['name'],
-                  style: GoogleFonts.notoSans(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.white),
+              child: DelayedAnimation(
+                delayedAnimation: 3,
+                aniOffsetX: 0,
+                aniOffsetY: .12,
+                aniDuration: 800,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 45),
+                  child: Text(
+                    data['name'],
+                    style: GoogleFonts.notoSans(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.white),
+                  ),
                 ),
               ),
             ),
             Positioned(
               left: 10,
               top: 20,
-              child: Container(
-                height: 150,
-                width: 150,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: NetworkImage(data['image']),
+              child: DelayedAnimation(
+                delayedAnimation: 3,
+                aniOffsetX: 0,
+                aniOffsetY: .12,
+                aniDuration: 800,
+                child: Container(
+                  height: 150,
+                  width: 150,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: NetworkImage(data['image']),
+                    ),
                   ),
                 ),
               ),

@@ -129,8 +129,7 @@ class SubGrid extends StatelessWidget {
               ),
             ],
           ),
-          // details page lek bottom value ne idukkan veendiyaanu ivide bottom koduthekkunnathu.
-          // appo matte details page il bottom widget tree ye vilikkan pattum
+
           bottom: PreferredSize(
             preferredSize: const Size.fromHeight(50),
             child: Stack(

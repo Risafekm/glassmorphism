@@ -47,7 +47,7 @@ class SalesTab extends StatelessWidget {
             Positioned(
               bottom: 10,
               child: DelayedAnimation(
-                delayedAnimation: 3,
+                delayedAnimation: 2,
                 aniOffsetX: 0,
                 aniOffsetY: .12,
                 aniDuration: 800,
@@ -67,7 +67,7 @@ class SalesTab extends StatelessWidget {
               left: 10,
               top: 20,
               child: DelayedAnimation(
-                delayedAnimation: 3,
+                delayedAnimation: 2,
                 aniOffsetX: 0,
                 aniOffsetY: .12,
                 aniDuration: 800,

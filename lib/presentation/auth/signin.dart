@@ -116,7 +116,8 @@ class SignIn extends StatelessWidget {
                     aniOffsetY: 0.35,
                     delayedAnimation: 900,
                     child: HelperNavigationText(
-                      "SignIn",
+                      "SignUp",
+                      "Don't have an account? ",
                       onTap: onTap,
                     ),
                   ),

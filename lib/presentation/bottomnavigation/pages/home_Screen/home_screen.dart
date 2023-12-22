@@ -362,20 +362,26 @@ class HomeScreen extends StatelessWidget {
               GlassContainer.clearGlass(height: 200, width: 200),
               Positioned(
                 bottom: 10,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 45),
-                  child: Text(data['name'],
-                      style: GoogleFonts.notoSans(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.white)),
+                child: DelayedAnimation(
+                  delayedAnimation: 3,
+                  aniOffsetX: 0,
+                  aniOffsetY: .12,
+                  aniDuration: 800,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 45),
+                    child: Text(data['name'],
+                        style: GoogleFonts.notoSans(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.white)),
+                  ),
                 ),
               ),
               Positioned(
                 left: 10,
                 top: 20,
                 child: DelayedAnimation(
-                  delayedAnimation: 3,
+                  delayedAnimation: 2,
                   aniOffsetX: 0,
                   aniOffsetY: .12,
                   aniDuration: 800,

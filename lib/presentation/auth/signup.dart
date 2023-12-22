@@ -114,7 +114,7 @@ class SignUp extends StatelessWidget {
                     aniOffsetY: 0.35,
                     delayedAnimation: 900,
                     child: HelperNavigationText(
-                      "SignUp",
+                      "SignIn", "You have an account? ",
                       // onTap: () {
                       //   Navigator.of(context).push(
                       //       MaterialPageRoute(builder: (context) => SignIn()));

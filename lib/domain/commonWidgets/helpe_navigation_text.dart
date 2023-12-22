@@ -6,8 +6,10 @@ import 'package:flutter/material.dart';
 class HelperNavigationText extends StatefulWidget {
   VoidCallback onTap;
   String text;
+  String help;
   HelperNavigationText(
-    this.text, {
+    this.text,
+    this.help, {
     super.key,
     required this.onTap,
   });
@@ -21,7 +23,7 @@ class _HelperNavigationTextState extends State<HelperNavigationText> {
   Widget build(BuildContext context) {
     return RichText(
         text: TextSpan(
-            text: "Don't have an account? ",
+            text: widget.help,
             style: const TextStyle(color: Colors.white),
             children: [
           TextSpan(
